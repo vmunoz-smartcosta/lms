@@ -1,0 +1,18 @@
+{
+  "kind": "singleType",
+  "collectionName": "roles_apps",
+  "info": {
+    "singularName": "roles-app",
+    "pluralName": "roles-apps",
+    "displayName": "roles-app"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nombre": {
+      "type": "string"
+    }
+  }
+}

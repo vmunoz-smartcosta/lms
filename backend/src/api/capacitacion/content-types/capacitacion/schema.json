@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "capacitacions",
+  "info": {
+    "singularName": "capacitacion",
+    "pluralName": "capacitacions",
+    "displayName": "capacitacion"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nombre": {
+      "type": "string"
+    },
+    "descripcion": {
+      "type": "text"
+    },
+    "actualizacion": {
+      "type": "date"
+    },
+    "contenidos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::contenido.contenido",
+      "mappedBy": "capacitacion"
+    },
+    "empresas": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::empresa.empresa",
+      "inversedBy": "capacitacions"
+    }
+  }
+}
