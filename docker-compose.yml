@@ -1,0 +1,59 @@
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: postgres_db
+    restart: always
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "${POSTGRES_HOST_PORT}:${POSTGRES_PORT}"
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+
+  strapi:
+    container_name: strapi_app
+    build:
+      context: ./backend
+      dockerfile: ../Dockerfile.strapi
+    image: strapi_app:latest
+    restart: always
+    env_file: .env
+    environment:
+      DATABASE_CLIENT: ${DATABASE_CLIENT}
+      DATABASE_HOST: ${DATABASE_HOST}
+      DATABASE_PORT: ${DATABASE_PORT}
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_SSL: ${DATABASE_SSL}
+      JWT_SECRET: ${JWT_SECRET}
+      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
+      APP_KEYS: ${APP_KEYS}
+      API_TOKEN_SALT: ${API_TOKEN_SALT}
+      TRANSFER_TOKEN_SALT: ${TRANSFER_TOKEN_SALT}
+    ports:
+      - "1337:1337"
+      - "5173:5173"
+    volumes:
+      - ./backend:/opt/app
+    depends_on:
+      - db
+
+  frontend:
+    container_name: react_frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.frontend
+    image: react_frontend:latest
+    restart: always
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/opt/app
+      - /opt/app/node_modules
+    depends_on:
+      - strapi

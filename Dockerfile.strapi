@@ -1,0 +1,16 @@
+FROM node:20-alpine
+# Installing libvips-dev for sharp Compatibility
+RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev > /dev/null 2>&1
+
+ENV NODE_ENV=development
+
+WORKDIR /opt/
+COPY package.json package-lock.json* ./
+RUN npm install && npm cache clean --force
+ENV PATH /opt/node_modules/.bin:$PATH
+
+WORKDIR /opt/app
+COPY . .
+RUN npm run build
+EXPOSE 1337
+CMD ["npm", "run", "develop"]
