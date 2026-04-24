@@ -2,7 +2,7 @@ FROM node:20-alpine
 
 RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev > /dev/null 2>&1
 
-ENV NODE_ENV=development
+ENV NODE_ENV=production
 ENV NODE_OPTIONS=--max-old-space-size=1024
 
 WORKDIR /opt/
@@ -12,6 +12,6 @@ ENV PATH /opt/node_modules/.bin:$PATH
 
 WORKDIR /opt/app
 COPY . .
-RUN NODE_OPTIONS="--max-old-space-size=1024" npm run build
+# Ya no hace npm run build, copia el .tmp/dist generado en el host
 EXPOSE 1337
-CMD ["npm", "run", "develop"]
+CMD ["npm", "run", "start"]
