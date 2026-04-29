@@ -8,6 +8,34 @@ Este proyecto contiene un backend desarrollado con **Strapi 5** y un frontend co
 
 ---
 
+## 🚀 Configuración Recomendada de Memoria (SWAP)
+
+Si tu instancia tiene 2GB de RAM o menos, es **obligatorio** configurar un archivo de intercambio (SWAP) de al menos 4GB para asegurar que Strapi pueda compilar correctamente.
+
+```bash
+# Desactivar swap actual si existe
+sudo swapoff -a
+sudo rm -f /swapfile
+
+# Crear el nuevo swapfile de 4GB
+sudo fallocate -l 4G /swapfile
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+
+# Verificar configuración
+free -h
+
+# Hacerlo permanente (fstab)
+echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+
+# Ajustar swappiness para servidor (uso óptimo)
+sudo sysctl vm.swappiness=10
+echo 'vm.swappiness=10' | sudo tee -a /etc/sysctl.conf
+```
+
+---
+
 ## 🛠️ Instalación Paso a Paso
 
 ### 1. Clonar el repositorio
