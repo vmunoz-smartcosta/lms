@@ -452,6 +452,10 @@ export interface ApiCapacitacionCapacitacion
       Schema.Attribute.Private;
     descripcion: Schema.Attribute.Text;
     empresas: Schema.Attribute.Relation<'manyToMany', 'api::empresa.empresa'>;
+    evaluacions: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::evaluacion.evaluacion'
+    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -463,6 +467,42 @@ export interface ApiCapacitacionCapacitacion
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+  };
+}
+
+export interface ApiCertificadoCertificado extends Struct.CollectionTypeSchema {
+  collectionName: 'certificados';
+  info: {
+    displayName: 'certificados';
+    pluralName: 'certificados';
+    singularName: 'certificado';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    aprobado: Schema.Attribute.Boolean;
+    capacitacion: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::capacitacion.capacitacion'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::certificado.certificado'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
   };
 }
 
@@ -539,6 +579,39 @@ export interface ApiEmpresaEmpresa extends Struct.CollectionTypeSchema {
       'oneToMany',
       'plugin::users-permissions.user'
     >;
+  };
+}
+
+export interface ApiEvaluacionEvaluacion extends Struct.CollectionTypeSchema {
+  collectionName: 'evaluacions';
+  info: {
+    displayName: 'evaluacion';
+    pluralName: 'evaluacions';
+    singularName: 'evaluacion';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    capacitacion: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::capacitacion.capacitacion'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::evaluacion.evaluacion'
+    > &
+      Schema.Attribute.Private;
+    pregunta: Schema.Attribute.Text;
+    publishedAt: Schema.Attribute.DateTime;
+    respuesta: Schema.Attribute.Boolean;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
   };
 }
 
@@ -1086,6 +1159,10 @@ export interface PluginUsersPermissionsUser
   };
   attributes: {
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    certificados: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::certificado.certificado'
+    >;
     confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;
     confirmed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     createdAt: Schema.Attribute.DateTime;
@@ -1144,8 +1221,10 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::capacitacion.capacitacion': ApiCapacitacionCapacitacion;
+      'api::certificado.certificado': ApiCertificadoCertificado;
       'api::contenido.contenido': ApiContenidoContenido;
       'api::empresa.empresa': ApiEmpresaEmpresa;
+      'api::evaluacion.evaluacion': ApiEvaluacionEvaluacion;
       'api::rol.rol': ApiRolRol;
       'api::roles-app.roles-app': ApiRolesAppRolesApp;
       'api::solicitud.solicitud': ApiSolicitudSolicitud;

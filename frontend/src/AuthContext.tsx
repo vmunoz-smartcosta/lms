@@ -10,6 +10,7 @@ interface User {
   rol?: { id: number; documentId: string; nombre: string };
   empresa?: { id: number; documentId: string; nombre: string };
   solicitud?: { id: number; documentId: string; aprobado: boolean };
+  certificados?: any[];
 }
 
 interface AuthContextType {
@@ -48,7 +49,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     try {
       if (!isInitial) setLoading(true);
       console.log('[Auth] Refreshing user...');
-      const { data } = await api.get('/users/me?populate[rol][populate]=*&populate[empresa][populate]=*&populate[solicitud][populate]=*');
+      const { data } = await api.get('/users/me?populate[rol][populate]=*&populate[empresa][populate]=*&populate[solicitud][populate]=*&populate[certificados][populate]=*');
       setUser(data);
       console.log('[Auth] User loaded:', data.username);
     } catch (error) {
@@ -68,11 +69,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   // 3. Logout (Simple and robust)
   const logout = useCallback(async () => {
     console.log('[Auth] Logout initiated');
-    try {
-      // Intentamos avisar al backend, pero no bloqueamos el proceso local
-      api.post('/auth/logout').catch(() => {});
-    } catch (e) {}
-
     localStorage.removeItem('jwt');
     setUser(null);
     setLoading(false);

@@ -31,6 +31,12 @@
       "relation": "manyToMany",
       "target": "api::empresa.empresa",
       "inversedBy": "capacitacions"
+    },
+    "evaluacions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::evaluacion.evaluacion",
+      "mappedBy": "capacitacion"
     }
   }
 }

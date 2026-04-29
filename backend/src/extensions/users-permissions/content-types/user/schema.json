@@ -82,6 +82,12 @@
       "relation": "oneToOne",
       "target": "api::solicitud.solicitud",
       "mappedBy": "users_permissions_user"
+    },
+    "certificados": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::certificado.certificado",
+      "mappedBy": "user"
     }
   }
 }

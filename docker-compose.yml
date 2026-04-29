@@ -1,21 +1,6 @@
 services:
-  db:
-    image: postgres:15-alpine
-    container_name: postgres_db
-    restart: always
-    env_file:
-      - .env
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
-    ports:
-      - "${POSTGRES_HOST_PORT}:${POSTGRES_PORT}"
-    volumes:
-      - ./postgres_data:/var/lib/postgresql/data
-
   strapi:
-    container_name: strapi_app
+    container_name: lms_backend
     build:
       context: ./backend
       dockerfile: ../Dockerfile.strapi
@@ -40,11 +25,10 @@ services:
       - "5173:5173"
     volumes:
       - ./backend:/opt/app
-    depends_on:
-      - db
+      - ./backend/.tmp:/opt/app/.tmp
 
   frontend:
-    container_name: react_frontend
+    container_name: lms_frontend
     build:
       context: ./frontend
       dockerfile: Dockerfile.frontend
@@ -56,4 +40,30 @@ services:
       - ./frontend:/opt/app
       - /opt/app/node_modules
     depends_on:
+      - db
       - strapi
+
+  db:
+    container_name: lms_db
+    image: postgres:16-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: ${DATABASE_USERNAME}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+    command: >
+      postgres
+      -c 'shared_buffers=64MB'
+      -c 'max_connections=20'
+      -c 'work_mem=4MB'
+
+volumes:
+  postgres_data:

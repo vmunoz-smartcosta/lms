@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "evaluacions",
+  "info": {
+    "singularName": "evaluacion",
+    "pluralName": "evaluacions",
+    "displayName": "evaluacion"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "capacitacion": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::capacitacion.capacitacion",
+      "inversedBy": "evaluacions"
+    },
+    "pregunta": {
+      "type": "text"
+    },
+    "respuesta": {
+      "type": "boolean"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "certificados",
+  "info": {
+    "singularName": "certificado",
+    "pluralName": "certificados",
+    "displayName": "certificados"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "aprobado": {
+      "type": "boolean"
+    },
+    "capacitacion": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::capacitacion.capacitacion"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "certificados"
+    }
+  }
+}
