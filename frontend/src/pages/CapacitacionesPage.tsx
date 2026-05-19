@@ -22,22 +22,28 @@ export const CapacitacionesPage = () => {
     const fetchCapacitaciones = async () => {
       try {
         setLoading(true);
-        let url = '/capacitacions';
+        let url = '/capacitacions?populate=*';
         
         // Si el usuario pertenece a una empresa y NO es administrador, filtramos por ella
         const isAdmin = user?.rol?.nombre?.toLowerCase() === 'administrador';
         
-        if (user?.empresa?.id && !isAdmin) {
-          url += `?filters[empresas][id][$eq]=${user.empresa.id}`;
-          console.log('[Capacitaciones] Filtrando por empresa ID:', user.empresa.id);
+        if (user?.empresa?.documentId && !isAdmin) {
+          url += `&filters[empresas][documentId][$eq]=${user.empresa.documentId}`;
+          console.log('[Capacitaciones] Filtrando por empresa documentId:', user.empresa.documentId);
         } else if (isAdmin) {
           console.log('[Capacitaciones] Administrador detectado: Ver todas');
         }
 
+        console.log('[Capacitaciones] Fetching URL:', url);
         const response = await api.get(url);
+        console.log('[Capacitaciones] Response data:', response.data);
         setCapacitaciones(response.data.data);
-      } catch (error) {
+      } catch (error: any) {
         console.error('Error fetching capacitaciones:', error);
+        if (error.response) {
+          console.error('Error status:', error.response.status);
+          console.error('Error data:', error.response.data);
+        }
       } finally {
         setLoading(false);
       }

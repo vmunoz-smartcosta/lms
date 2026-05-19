@@ -237,7 +237,7 @@ export const UsersPage = () => {
                   <td className="px-8 py-6">
                     <div className="flex items-center gap-3">
                       <div className="flex -space-x-2">
-                        {user.certificados?.slice(0, 3).map((cert, i) => (
+                        {user.certificados?.slice(0, 3).map((cert) => (
                           <div key={cert.id} className={`w-8 h-8 rounded-full border-2 border-white flex items-center justify-center text-white ${cert.aprobado ? 'bg-green-500' : 'bg-red-400'}`}>
                             {cert.aprobado ? <Trophy size={14} /> : <XCircle size={14} />}
                           </div>

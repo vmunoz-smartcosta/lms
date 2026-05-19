@@ -6,12 +6,13 @@ import {
   ChevronLeft,
   ChevronRight,
   BookOpen,
-  Building2,
   Clock,
   CheckCircle2,
   XCircle,
   ClipboardCheck,
-  Trophy
+  Trophy,
+  AlertTriangle,
+  RotateCcw
 } from 'lucide-react';
 
 interface Contenido {
@@ -40,6 +41,8 @@ interface CapacitacionDetail {
   contenidos: Contenido[];
   empresas: any[];
   evaluacions: Evaluacion[];
+  intentos?: number;
+  yaAprobado?: boolean;
 }
 
 export const CapacitacionDetailPage = () => {
@@ -55,6 +58,8 @@ export const CapacitacionDetailPage = () => {
   const [evaluationFinished, setEvaluationFinished] = useState(false);
   const [approved, setApproved] = useState<boolean | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [attempts, setAttempts] = useState(0);
+  const [hasApprovedBefore, setHasApprovedBefore] = useState(false);
 
   useEffect(() => {
     const fetchDetail = async () => {
@@ -75,6 +80,20 @@ export const CapacitacionDetailPage = () => {
         if (sortedData.contenidos?.length > 0) {
           setActiveChapter(sortedData.contenidos[0]);
         }
+        // Get attempts for this user and capacitación
+        const certsRes = await api.get(`/certificados?filters[user][id][$eq]=${user?.id}&filters[capacitacion][id][$eq]=${sortedData.id}&populate=*`);
+        const userCerts = certsRes.data.data || [];
+        const attemptCount = userCerts.length;
+        const isAlreadyApproved = userCerts.some((c: any) => c.aprobado === true);
+        
+        setAttempts(attemptCount);
+        setHasApprovedBefore(isAlreadyApproved);
+        
+        setData({
+          ...sortedData,
+          intentos: attemptCount,
+          yaAprobado: isAlreadyApproved
+        });
       } catch (error) {
         console.error('Error fetching detail:', error);
       } finally {
@@ -218,28 +237,65 @@ export const CapacitacionDetailPage = () => {
 
               {data.evaluacions?.length > 0 && (
                 <button
+                  disabled={hasApprovedBefore || attempts >= 3}
                   onClick={() => {
                     setShowEvaluation(true);
                     setActiveChapter(null);
                   }}
                   className={`w-full flex items-center gap-4 p-4 rounded-2xl text-left transition-all duration-300 border-2 ${showEvaluation
                     ? 'bg-primary/5 border-primary text-primary shadow-lg shadow-primary/5'
-                    : 'bg-light/30 border-transparent text-gray-dark hover:bg-light/50'
+                    : (hasApprovedBefore || attempts >= 3)
+                      ? 'bg-gray-100 border-transparent text-gray-400 cursor-not-allowed opacity-60'
+                      : 'bg-light/30 border-transparent text-gray-dark hover:bg-light/50'
                     }`}
                 >
-                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-colors ${showEvaluation ? 'bg-primary text-white' : 'bg-blue-gray/20 text-gray-dark'
+                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-colors ${
+                    showEvaluation 
+                      ? 'bg-primary text-white' 
+                      : (hasApprovedBefore || attempts >= 3)
+                        ? 'bg-gray-200 text-gray-400'
+                        : 'bg-blue-gray/20 text-gray-dark'
                     }`}>
                     <ClipboardCheck size={20} />
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-bold truncate leading-tight">Evaluación Final</p>
                     <p className="text-[10px] uppercase tracking-widest font-black mt-1 opacity-60">
-                      Examen de aprobación
+                      {hasApprovedBefore 
+                        ? 'Completado' 
+                        : attempts >= 3 
+                          ? 'Intentos agotados' 
+                          : 'Examen de aprobación'}
                     </p>
                   </div>
                 </button>
               )}
             </div>
+            
+            {(attempts > 0 || hasApprovedBefore) && (
+              <div className="mt-6 p-6 bg-light/30 rounded-3xl border border-blue-gray/10">
+                <h4 className="text-[10px] font-black uppercase tracking-widest text-gray-dark mb-3">Estado de Evaluación</h4>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="font-bold text-gray-dark">Intentos realizados:</span>
+                    <span className={`font-black ${attempts >= 3 ? 'text-red-500' : 'text-primary'}`}>{attempts}/3</span>
+                  </div>
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="font-bold text-gray-dark">Resultado:</span>
+                    {hasApprovedBefore ? (
+                      <span className="font-black text-green-500 uppercase tracking-widest flex items-center gap-1">
+                        <CheckCircle2 size={12} /> Aprobado
+                      </span>
+                    ) : (
+                      <span className="font-black text-red-400 uppercase tracking-widest flex items-center gap-1">
+                        {attempts >= 3 ? <XCircle size={12} /> : <RotateCcw size={12} />} 
+                        {attempts >= 3 ? 'No Aprobado' : 'Pendiente'}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
@@ -261,25 +317,249 @@ export const CapacitacionDetailPage = () => {
                 </div>
 
                 <div className="p-12 prose prose-slate max-w-none flex-1">
-                  {activeChapter.contenido?.map((block, idx) => (
-                    <div key={idx} className="mb-6">
-                      {block.type === 'heading' && (
-                        <h3 className={`font-black text-dark tracking-tight mt-8 mb-4 ${block.level === 1 ? 'text-3xl' : 'text-xl'}`}>
-                          {block.children?.[0]?.text}
-                        </h3>
-                      )}
-                      {block.type === 'paragraph' && (
-                        <p className="text-gray-dark leading-relaxed text-lg mb-4">
-                          {block.children?.[0]?.text}
-                        </p>
-                      )}
-                      {block.type === 'image' && block.image && (
-                        <div className="my-10 rounded-[32px] overflow-hidden shadow-2xl border-8 border-light/30">
-                          <img src={block.image.url} alt={block.image.alternativeText || ''} className="w-full h-auto" />
+                  {(() => {
+                    const isVideoUrl = (url: string) => {
+                      if (!url || typeof url !== 'string') return false;
+                      const cleaned = url.trim();
+                      return (
+                        cleaned.includes('youtube.com/watch') ||
+                        cleaned.includes('youtube.com/embed') ||
+                        cleaned.includes('youtu.be/') ||
+                        cleaned.includes('vimeo.com/') ||
+                        cleaned.includes('sharepoint.com') ||
+                        cleaned.includes('onedrive.live.com') ||
+                        cleaned.includes('1drv.ms') ||
+                        cleaned.endsWith('.mp4') ||
+                        cleaned.endsWith('.webm')
+                      );
+                    };
+
+                    const isIframeHtml = (text: string) => {
+                      if (!text || typeof text !== 'string') return false;
+                      const cleaned = text.trim();
+                      return cleaned.startsWith('<iframe') && cleaned.includes('</iframe>');
+                    };
+
+                    const extractSrcFromIframe = (iframeHtml: string) => {
+                      const match = iframeHtml.match(/src=["']([^"']+)["']/);
+                      return match ? match[1] : null;
+                    };
+
+                    const getEmbedUrl = (url: string) => {
+                      if (url.includes('youtube.com/watch')) {
+                        const videoId = new URLSearchParams(new URL(url).search).get('v');
+                        return `https://www.youtube.com/embed/${videoId}`;
+                      }
+                      if (url.includes('youtu.be/')) {
+                        const videoId = url.split('/').pop();
+                        return `https://www.youtube.com/embed/${videoId}`;
+                      }
+                      if (url.includes('vimeo.com/')) {
+                        const videoId = url.split('/').pop();
+                        return `https://player.vimeo.com/video/${videoId}`;
+                      }
+                      return url;
+                    };
+
+                    const renderVideo = (url: string, keyToUse?: any) => {
+                      const embedUrl = getEmbedUrl(url);
+                      const isOneDriveOrSharepoint =
+                        embedUrl.includes('sharepoint.com') ||
+                        embedUrl.includes('onedrive.live.com') ||
+                        embedUrl.includes('1drv.ms');
+
+                      if (url.endsWith('.mp4') || url.endsWith('.webm')) {
+                        return (
+                          <div key={keyToUse} className="my-8 rounded-[32px] overflow-hidden shadow-2xl border-8 border-light/30 bg-black aspect-video flex items-center justify-center">
+                            <video src={url} controls className="w-full h-full max-h-[500px]" />
+                          </div>
+                        );
+                      }
+
+                      if (isOneDriveOrSharepoint) {
+                        return (
+                          <div key={keyToUse} className="my-8 animate-in fade-in slide-in-from-top-1 duration-300">
+                            <div className="rounded-[32px] overflow-hidden shadow-2xl border-8 border-light/30 bg-black aspect-video">
+                              <iframe
+                                src={embedUrl}
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                                className="w-full h-full border-0"
+                              ></iframe>
+                            </div>
+                            <div className="mt-4 p-4 bg-primary/5 border border-primary/20 rounded-2xl flex flex-col md:flex-row md:items-center justify-between gap-4">
+                              <div className="flex-1">
+                                <h5 className="text-sm font-bold text-dark mb-1">¿Tienes problemas para ver este video?</h5>
+                                <p className="text-xs text-gray-dark leading-relaxed">Debido a las políticas de seguridad de OneDrive / SharePoint, es posible que debas iniciar sesión en tu cuenta de Microsoft en una nueva pestaña para visualizarlo.</p>
+                              </div>
+                              <a 
+                                href={embedUrl} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="px-5 py-2.5 bg-primary text-white text-xs font-black uppercase tracking-wider rounded-xl hover:bg-primary/90 transition-all text-center flex-shrink-0 shadow-lg shadow-primary/20 hover:scale-105"
+                              >
+                                Abrir Video en OneDrive
+                              </a>
+                            </div>
+                          </div>
+                        );
+                      }
+
+                      return (
+                        <div key={keyToUse} className="my-8 rounded-[32px] overflow-hidden shadow-2xl border-8 border-light/30 bg-black aspect-video">
+                          <iframe
+                            src={embedUrl}
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                            className="w-full h-full border-0"
+                          ></iframe>
                         </div>
-                      )}
-                    </div>
-                  ))}
+                      );
+                    };
+
+                    const renderChildren = (children: any[]): React.ReactNode => {
+                      if (!children || !Array.isArray(children)) return null;
+                      return children.map((child, idx) => {
+                        if (child.type === 'link') {
+                          const url = child.url || '';
+                          if (isVideoUrl(url)) {
+                            return renderVideo(url, `video-${idx}`);
+                          }
+                          return (
+                            <a key={idx} href={child.url} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline break-words font-semibold">
+                              {renderChildren(child.children)}
+                            </a>
+                          );
+                        }
+
+                        if (child.type === 'text') {
+                          let content: React.ReactNode = child.text;
+                          if (!content && content !== '') return null;
+
+                          if (isIframeHtml(child.text)) {
+                            const src = extractSrcFromIframe(child.text);
+                            if (src) return renderVideo(src, `iframe-${idx}`);
+                          }
+
+                          if (child.bold) {
+                            content = <strong className="font-black text-dark">{content}</strong>;
+                          }
+                          if (child.italic) {
+                            content = <em className="italic">{content}</em>;
+                          }
+                          if (child.underline) {
+                            content = <u className="underline">{content}</u>;
+                          }
+                          if (child.code) {
+                            content = <code className="bg-light/80 text-primary px-2 py-0.5 rounded font-mono text-sm">{content}</code>;
+                          }
+                          return <span key={idx}>{content}</span>;
+                        }
+                        return null;
+                      });
+                    };
+
+                    return activeChapter.contenido?.map((block: any, idx: number) => {
+                      if (block.type === 'heading') {
+                        const lvl = block.level || 1;
+                        const content = renderChildren(block.children);
+                        let headingEl = <h1 className="text-3xl font-black text-dark tracking-tight mt-8 mb-4">{content}</h1>;
+                        if (lvl === 2) headingEl = <h2 className="text-2xl font-extrabold text-dark tracking-tight mt-7 mb-3">{content}</h2>;
+                        if (lvl === 3) headingEl = <h3 className="text-xl font-bold text-dark tracking-tight mt-6 mb-2">{content}</h3>;
+                        if (lvl === 4) headingEl = <h4 className="text-lg font-bold text-dark tracking-tight mt-5 mb-2">{content}</h4>;
+                        if (lvl === 5) headingEl = <h5 className="text-base font-bold text-dark tracking-tight mt-4 mb-1">{content}</h5>;
+                        if (lvl === 6) headingEl = <h6 className="text-sm font-bold text-dark tracking-tight mt-3 mb-1">{content}</h6>;
+
+                        return (
+                          <div key={idx} className="mb-4">
+                            {headingEl}
+                          </div>
+                        );
+                      }
+
+                      if (block.type === 'paragraph') {
+                        if (block.children && block.children.length === 1) {
+                          const singleChild = block.children[0];
+                          if (singleChild.type === 'link' && isVideoUrl(singleChild.url)) {
+                            return <div key={idx}>{renderVideo(singleChild.url, `para-link-${idx}`)}</div>;
+                          }
+                          if (singleChild.type === 'text' && isVideoUrl(singleChild.text)) {
+                            return <div key={idx}>{renderVideo(singleChild.text, `para-text-${idx}`)}</div>;
+                          }
+                        }
+
+                        const maybeVideoUrl = block.children?.find((c: any) => c.type === 'text' && isVideoUrl(c.text));
+                        if (maybeVideoUrl) {
+                          return <div key={idx}>{renderVideo(maybeVideoUrl.text, `para-maybe-${idx}`)}</div>;
+                        }
+
+                        return (
+                          <div key={idx} className="mb-4">
+                            <div className="text-gray-dark leading-relaxed text-lg mb-4">
+                              {renderChildren(block.children)}
+                            </div>
+                          </div>
+                        );
+                      }
+
+                      if (block.type === 'list') {
+                        if (block.format === 'ordered') {
+                          return (
+                            <div key={idx} className="mb-6">
+                              <ol className="list-decimal pl-6 space-y-2 text-gray-dark text-lg">
+                                {block.children?.map((item: any, i: number) => (
+                                  <li key={i} className="leading-relaxed">
+                                    {renderChildren(item.children)}
+                                  </li>
+                                ))}
+                              </ol>
+                            </div>
+                          );
+                        }
+                        return (
+                          <div key={idx} className="mb-6">
+                            <ul className="list-disc pl-6 space-y-2 text-gray-dark text-lg">
+                              {block.children?.map((item: any, i: number) => (
+                                <li key={i} className="leading-relaxed">
+                                  {renderChildren(item.children)}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        );
+                      }
+
+                      if (block.type === 'code') {
+                        return (
+                          <div key={idx} className="mb-6">
+                            <pre className="bg-dark text-light p-6 rounded-2xl overflow-x-auto font-mono text-sm border border-blue-gray/10 shadow-lg select-all">
+                              <code>{renderChildren(block.children)}</code>
+                            </pre>
+                          </div>
+                        );
+                      }
+
+                      if (block.type === 'quote') {
+                        return (
+                          <div key={idx} className="mb-6">
+                            <blockquote className="border-l-4 border-primary pl-4 my-4 italic text-gray-dark">
+                              {renderChildren(block.children)}
+                            </blockquote>
+                          </div>
+                        );
+                      }
+
+                      if (block.type === 'image' && block.image) {
+                        return (
+                          <div key={idx} className="my-10 rounded-[32px] overflow-hidden shadow-2xl border-8 border-light/30">
+                            <img src={block.image.url} alt={block.image.alternativeText || ''} className="w-full h-auto" />
+                          </div>
+                        );
+                      }
+
+                      return null;
+                    });
+                  })()}
                 </div>
 
                 <div className="p-8 bg-light/30 border-t border-blue-gray/10 flex items-center justify-between">
@@ -301,7 +581,15 @@ export const CapacitacionDetailPage = () => {
                       </div>
                       <h2 className="text-3xl font-black text-dark tracking-tight mb-2">Evaluación Final</h2>
                       <p className="text-gray-dark font-medium">Responde correctamente al menos el 75% para obtener tu certificado.</p>
-                      <p className="text-[10px] font-black uppercase tracking-widest text-primary mt-2">
+                      
+                      <div className={`mt-6 p-4 rounded-2xl border flex items-center justify-center gap-3 text-xs font-bold uppercase tracking-widest ${
+                        attempts >= 2 ? 'bg-red-50 border-red-100 text-red-600' : 'bg-primary/5 border-primary/10 text-primary'
+                      }`}>
+                        {attempts >= 2 ? <AlertTriangle size={16} /> : <Clock size={16} />}
+                        {attempts === 0 ? 'Primer Intento' : attempts === 1 ? 'Segundo Intento' : '¡Último Intento!'}
+                      </div>
+
+                      <p className="text-[10px] font-black uppercase tracking-widest text-primary mt-4">
                         {selectedEvaluations.length} Preguntas Seleccionadas
                       </p>
                     </div>
