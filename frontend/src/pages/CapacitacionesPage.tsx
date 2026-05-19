@@ -24,12 +24,17 @@ export const CapacitacionesPage = () => {
         setLoading(true);
         let url = '/capacitacions?populate=*';
         
-        // Si el usuario pertenece a una empresa y NO es administrador, filtramos por ella
+        // Si el usuario pertenece a una empresa y NO es administrador, filtramos por empresa y rol
         const isAdmin = user?.rol?.nombre?.toLowerCase() === 'administrador';
         
         if (user?.empresa?.documentId && !isAdmin) {
           url += `&filters[empresas][documentId][$eq]=${user.empresa.documentId}`;
           console.log('[Capacitaciones] Filtrando por empresa documentId:', user.empresa.documentId);
+          
+          if (user?.rol?.documentId) {
+            url += `&filters[rols][documentId][$eq]=${user.rol.documentId}`;
+            console.log('[Capacitaciones] Filtrando por rol documentId:', user.rol.documentId);
+          }
         } else if (isAdmin) {
           console.log('[Capacitaciones] Administrador detectado: Ver todas');
         }

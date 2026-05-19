@@ -59,6 +59,23 @@ interface User {
   certificados?: Certificado[];
 }
 
+const getRoleBadgeStyles = (roleName?: string | null) => {
+  if (!roleName) return 'bg-blue-gray/10 border-blue-gray/20 text-gray-dark';
+  
+  switch (roleName.toLowerCase()) {
+    case 'administrador':
+      return 'bg-secondary/10 border-secondary/20 text-secondary';
+    case 'cliente':
+      return 'bg-emerald-500/10 border-emerald-500/20 text-emerald-600';
+    case 'partner':
+      return 'bg-indigo-500/10 border-indigo-500/20 text-indigo-600';
+    case 'colaborador':
+      return 'bg-cyan-500/10 border-cyan-500/20 text-cyan-600';
+    default:
+      return 'bg-blue-gray/10 border-blue-gray/20 text-gray-dark';
+  }
+};
+
 export const UsersPage = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [roles, setRoles] = useState<Role[]>([]);
@@ -220,11 +237,7 @@ export const UsersPage = () => {
                   <td className="px-8 py-6">
                     <div className="space-y-1.5">
                       <div className="flex items-center gap-2">
-                        <span className={`text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full border ${
-                          user.rol?.nombre === 'administrador' 
-                          ? 'bg-secondary/10 border-secondary/20 text-secondary' 
-                          : 'bg-blue-gray/10 border-blue-gray/20 text-gray-dark'
-                        }`}>
+                        <span className={`text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full border ${getRoleBadgeStyles(user.rol?.nombre)}`}>
                           {user.rol?.nombre || 'Sin Rol'}
                         </span>
                       </div>

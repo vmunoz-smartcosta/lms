@@ -64,7 +64,7 @@ export const CapacitacionDetailPage = () => {
   useEffect(() => {
     const fetchDetail = async () => {
       try {
-        const response = await api.get(`/capacitacions/${id}?populate[contenidos][populate]=*&populate[empresas][populate]=*&populate[evaluacions][populate]=*`);
+        const response = await api.get(`/capacitacions/${id}?populate[contenidos][populate]=*&populate[empresas][populate]=*&populate[evaluacions][populate]=*&populate[rols][populate]=*`);
         const sortedData = response.data.data;
         if (sortedData.contenidos) {
           sortedData.contenidos.sort((a: Contenido, b: Contenido) => a.orden - b.orden);
