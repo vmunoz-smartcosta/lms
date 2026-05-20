@@ -1,0 +1,1733 @@
+{
+    "data": {
+        "id": 10,
+        "documentId": "ivhjsc8yfjwk2e0mbzp6vc1t",
+        "nombre": "Capacitación Módulo Empleados - SignusID",
+        "descripcion": "En esta sección se va a aprender sobre cómo crear empleados, editarlos, y activarlos o inactivarlos.",
+        "actualizacion": "2026-05-01",
+        "createdAt": "2026-05-01T15:13:11.732Z",
+        "updatedAt": "2026-05-19T21:56:02.720Z",
+        "publishedAt": "2026-05-19T21:56:02.768Z",
+        "contenidos": [
+            {
+                "id": 52,
+                "documentId": "gdsrrbtsynowugbfn6s8kcus",
+                "orden": 1,
+                "contenido": [
+                    {
+                        "type": "heading",
+                        "level": 2,
+                        "children": [
+                            {
+                                "text": "Módulo de Empleados",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "children": [
+                            {
+                                "text": "En este módulo se administran los empleados registrados en el sistema. Desde aquí es posible consultar empleados existentes, registrar nuevos empleados, editar su información y activar o desactivar su estado dentro de la aplicación.\n",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "heading",
+                        "level": 3,
+                        "children": [
+                            {
+                                "text": "1. Pantalla principal del módulo",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "children": [
+                            {
+                                "text": "Al ingresar al módulo de empleados se muestra una tabla con la información principal de cada empleado registrado.",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "children": [
+                            {
+                                "text": "En esta pantalla se pueden observar los siguientes elementos:",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "list",
+                        "format": "unordered",
+                        "children": [
+                            {
+                                "type": "list-item",
+                                "children": [
+                                    {
+                                        "text": "Buscador de empleado: permite buscar empleados por nombre u otro dato relacionado.",
+                                        "type": "text"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "list",
+                        "format": "unordered",
+                        "children": [
+                            {
+                                "type": "list-item",
+                                "children": [
+                                    {
+                                        "text": "Filtro por estatus: permite mostrar empleados activos o inactivos.",
+                                        "type": "text"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "list",
+                        "format": "unordered",
+                        "children": [
+                            {
+                                "type": "list-item",
+                                "children": [
+                                    {
+                                        "text": "Selector de cantidad de registros: permite elegir cuántos empleados se muestran por página.",
+                                        "type": "text"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "list",
+                        "format": "unordered",
+                        "children": [
+                            {
+                                "type": "list-item",
+                                "children": [
+                                    {
+                                        "text": "Tabla de empleados: muestra los datos principales del empleado.",
+                                        "type": "text"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "list",
+                        "format": "unordered",
+                        "children": [
+                            {
+                                "type": "list-item",
+                                "children": [
+                                    {
+                                        "text": "Botón Registrar Empleado: permite agregar un nuevo empleado.",
+                                        "type": "text"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "list",
+                        "format": "unordered",
+                        "children": [
+                            {
+                                "type": "list-item",
+                                "children": [
+                                    {
+                                        "text": "Botones de acciones: permiten editar o activar/desactivar empleados.",
+                                        "type": "text"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "image",
+                        "image": {
+                            "ext": ".png",
+                            "url": "http://44.204.243.176:1337/uploads/tablaempleados_d442a2fc33.png",
+                            "hash": "tablaempleados_d442a2fc33",
+                            "mime": "image/png",
+                            "name": "tablaempleados.png",
+                            "size": 24.58,
+                            "width": 1426,
+                            "height": 661,
+                            "caption": null,
+                            "formats": {
+                                "large": {
+                                    "ext": ".png",
+                                    "url": "/uploads/large_tablaempleados_d442a2fc33.png",
+                                    "hash": "large_tablaempleados_d442a2fc33",
+                                    "mime": "image/png",
+                                    "name": "large_tablaempleados.png",
+                                    "path": null,
+                                    "size": 76.63,
+                                    "width": 1000,
+                                    "height": 464,
+                                    "sizeInBytes": 76634
+                                },
+                                "small": {
+                                    "ext": ".png",
+                                    "url": "/uploads/small_tablaempleados_d442a2fc33.png",
+                                    "hash": "small_tablaempleados_d442a2fc33",
+                                    "mime": "image/png",
+                                    "name": "small_tablaempleados.png",
+                                    "path": null,
+                                    "size": 27.68,
+                                    "width": 500,
+                                    "height": 232,
+                                    "sizeInBytes": 27675
+                                },
+                                "medium": {
+                                    "ext": ".png",
+                                    "url": "/uploads/medium_tablaempleados_d442a2fc33.png",
+                                    "hash": "medium_tablaempleados_d442a2fc33",
+                                    "mime": "image/png",
+                                    "name": "medium_tablaempleados.png",
+                                    "path": null,
+                                    "size": 50.46,
+                                    "width": 750,
+                                    "height": 348,
+                                    "sizeInBytes": 50458
+                                },
+                                "thumbnail": {
+                                    "ext": ".png",
+                                    "url": "/uploads/thumbnail_tablaempleados_d442a2fc33.png",
+                                    "hash": "thumbnail_tablaempleados_d442a2fc33",
+                                    "mime": "image/png",
+                                    "name": "thumbnail_tablaempleados.png",
+                                    "path": null,
+                                    "size": 9.9,
+                                    "width": 245,
+                                    "height": 114,
+                                    "sizeInBytes": 9899
+                                }
+                            },
+                            "provider": "local",
+                            "createdAt": "2026-05-01T16:13:21.065Z",
+                            "updatedAt": "2026-05-01T16:13:21.065Z",
+                            "previewUrl": null,
+                            "alternativeText": "tablaempleados.png",
+                            "provider_metadata": null
+                        },
+                        "children": [
+                            {
+                                "text": "",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "children": [
+                            {
+                                "text": "",
+                                "type": "text"
+                            }
+                        ]
+                    }
+                ],
+                "Titulo": "Capacitación Modulo Empleados - 1. Pantalla principal del módulo",
+                "minutos": 2,
+                "actividad": "Lectura",
+                "createdAt": "2026-05-01T15:17:13.517Z",
+                "updatedAt": "2026-05-01T19:35:33.842Z",
+                "publishedAt": "2026-05-01T19:35:33.859Z",
+                "capacitacion": {
+                    "id": 10,
+                    "documentId": "ivhjsc8yfjwk2e0mbzp6vc1t",
+                    "nombre": "Capacitación Módulo Empleados - SignusID",
+                    "descripcion": "En esta sección se va a aprender sobre cómo crear empleados, editarlos, y activarlos o inactivarlos.",
+                    "actualizacion": "2026-05-01",
+                    "createdAt": "2026-05-01T15:13:11.732Z",
+                    "updatedAt": "2026-05-19T21:56:02.720Z",
+                    "publishedAt": "2026-05-19T21:56:02.768Z"
+                }
+            },
+            {
+                "id": 51,
+                "documentId": "gf41otbp3s7sa001qvq0nbzp",
+                "orden": 2,
+                "contenido": [
+                    {
+                        "type": "paragraph",
+                        "children": [
+                            {
+                                "text": "",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "heading",
+                        "level": 3,
+                        "children": [
+                            {
+                                "text": "2. Buscar un empleado",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "children": [
+                            {
+                                "text": "Para buscar un empleado específico, se debe escribir el nombre o parte del nombre en el campo Empleado... y luego presionar el botón Buscar.",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "children": [
+                            {
+                                "text": "Pasos:",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "list",
+                        "format": "ordered",
+                        "children": [
+                            {
+                                "type": "list-item",
+                                "children": [
+                                    {
+                                        "text": "Ubicarse en el campo Empleado....",
+                                        "type": "text"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "list-item",
+                                "children": [
+                                    {
+                                        "text": "Escribir el nombre o dato del empleado.",
+                                        "type": "text"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "list-item",
+                                "children": [
+                                    {
+                                        "text": "Presionar el botón Buscar.",
+                                        "type": "text"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "list-item",
+                                "children": [
+                                    {
+                                        "text": "El sistema mostrará los resultados que coincidan con la búsqueda.",
+                                        "type": "text"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "children": [
+                            {
+                                "text": "Esto permite encontrar rápidamente un empleado sin tener que revisar todas las páginas de la tabla.",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "image",
+                        "image": {
+                            "ext": ".png",
+                            "url": "http://44.204.243.176:1337/uploads/buscadorempleados_e00ab2eb3d.png",
+                            "hash": "buscadorempleados_e00ab2eb3d",
+                            "mime": "image/png",
+                            "name": "buscadorempleados.png",
+                            "size": 1.72,
+                            "width": 630,
+                            "height": 105,
+                            "caption": null,
+                            "formats": {
+                                "small": {
+                                    "ext": ".png",
+                                    "url": "/uploads/small_buscadorempleados_e00ab2eb3d.png",
+                                    "hash": "small_buscadorempleados_e00ab2eb3d",
+                                    "mime": "image/png",
+                                    "name": "small_buscadorempleados.png",
+                                    "path": null,
+                                    "size": 5.97,
+                                    "width": 500,
+                                    "height": 83,
+                                    "sizeInBytes": 5969
+                                },
+                                "thumbnail": {
+                                    "ext": ".png",
+                                    "url": "/uploads/thumbnail_buscadorempleados_e00ab2eb3d.png",
+                                    "hash": "thumbnail_buscadorempleados_e00ab2eb3d",
+                                    "mime": "image/png",
+                                    "name": "thumbnail_buscadorempleados.png",
+                                    "path": null,
+                                    "size": 2.34,
+                                    "width": 245,
+                                    "height": 41,
+                                    "sizeInBytes": 2339
+                                }
+                            },
+                            "provider": "local",
+                            "createdAt": "2026-05-01T16:16:28.802Z",
+                            "updatedAt": "2026-05-01T16:16:28.802Z",
+                            "previewUrl": null,
+                            "alternativeText": "buscadorempleados.png",
+                            "provider_metadata": null
+                        },
+                        "children": [
+                            {
+                                "text": "",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "children": [
+                            {
+                                "text": "",
+                                "type": "text"
+                            }
+                        ]
+                    }
+                ],
+                "Titulo": "Capacitación Modulo Empleados - 2. Buscar un empleado",
+                "minutos": 2,
+                "actividad": "Lectura",
+                "createdAt": "2026-05-01T19:28:38.707Z",
+                "updatedAt": "2026-05-01T19:35:22.092Z",
+                "publishedAt": "2026-05-01T19:35:22.112Z",
+                "capacitacion": {
+                    "id": 10,
+                    "documentId": "ivhjsc8yfjwk2e0mbzp6vc1t",
+                    "nombre": "Capacitación Módulo Empleados - SignusID",
+                    "descripcion": "En esta sección se va a aprender sobre cómo crear empleados, editarlos, y activarlos o inactivarlos.",
+                    "actualizacion": "2026-05-01",
+                    "createdAt": "2026-05-01T15:13:11.732Z",
+                    "updatedAt": "2026-05-19T21:56:02.720Z",
+                    "publishedAt": "2026-05-19T21:56:02.768Z"
+                }
+            },
+            {
+                "id": 38,
+                "documentId": "c9rnmq5jy5bh68yzfxn90kn1",
+                "orden": 3,
+                "contenido": [
+                    {
+                        "type": "heading",
+                        "level": 3,
+                        "children": [
+                            {
+                                "text": "3. Filtrar empleados por estatus",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "children": [
+                            {
+                                "text": "El módulo permite filtrar empleados según su estado.",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "children": [
+                            {
+                                "text": "Pasos:",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "list",
+                        "format": "ordered",
+                        "children": [
+                            {
+                                "type": "list-item",
+                                "children": [
+                                    {
+                                        "text": "Ubicarse en el campo Estatus.",
+                                        "type": "text"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "list-item",
+                                "children": [
+                                    {
+                                        "text": "Seleccionar una de las opciones disponibles: \n- Activo\n- Inactivo",
+                                        "type": "text"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "list-item",
+                                "children": [
+                                    {
+                                        "text": "Presionar el botón Filtrar.",
+                                        "type": "text"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "list-item",
+                                "children": [
+                                    {
+                                        "text": "La tabla mostrará únicamente los empleados que correspondan al estado seleccionado.",
+                                        "type": "text"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "children": [
+                            {
+                                "text": "Este filtro es útil cuando se desea revisar solo empleados actualmente activos o empleados que fueron desactivados.",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "image",
+                        "image": {
+                            "ext": ".png",
+                            "url": "http://44.204.243.176:1337/uploads/estatusempleados_4d264923b2.png",
+                            "hash": "estatusempleados_4d264923b2",
+                            "mime": "image/png",
+                            "name": "estatusempleados.png",
+                            "size": 2.58,
+                            "width": 634,
+                            "height": 142,
+                            "caption": null,
+                            "formats": {
+                                "small": {
+                                    "ext": ".png",
+                                    "url": "/uploads/small_estatusempleados_4d264923b2.png",
+                                    "hash": "small_estatusempleados_4d264923b2",
+                                    "mime": "image/png",
+                                    "name": "small_estatusempleados.png",
+                                    "path": null,
+                                    "size": 9.41,
+                                    "width": 500,
+                                    "height": 112,
+                                    "sizeInBytes": 9408
+                                },
+                                "thumbnail": {
+                                    "ext": ".png",
+                                    "url": "/uploads/thumbnail_estatusempleados_4d264923b2.png",
+                                    "hash": "thumbnail_estatusempleados_4d264923b2",
+                                    "mime": "image/png",
+                                    "name": "thumbnail_estatusempleados.png",
+                                    "path": null,
+                                    "size": 3.96,
+                                    "width": 245,
+                                    "height": 55,
+                                    "sizeInBytes": 3963
+                                }
+                            },
+                            "provider": "local",
+                            "createdAt": "2026-05-01T16:20:53.319Z",
+                            "updatedAt": "2026-05-01T16:20:53.319Z",
+                            "previewUrl": null,
+                            "alternativeText": "estatusempleados.png",
+                            "provider_metadata": null
+                        },
+                        "children": [
+                            {
+                                "text": "",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "children": [
+                            {
+                                "text": "",
+                                "type": "text"
+                            }
+                        ]
+                    }
+                ],
+                "Titulo": "Capacitación Modulo Empleados - 3. Filtrar empleados por estatus",
+                "minutos": 2,
+                "actividad": "Lectura",
+                "createdAt": "2026-05-01T19:30:00.174Z",
+                "updatedAt": "2026-05-01T19:30:00.174Z",
+                "publishedAt": "2026-05-01T19:30:00.203Z",
+                "capacitacion": {
+                    "id": 10,
+                    "documentId": "ivhjsc8yfjwk2e0mbzp6vc1t",
+                    "nombre": "Capacitación Módulo Empleados - SignusID",
+                    "descripcion": "En esta sección se va a aprender sobre cómo crear empleados, editarlos, y activarlos o inactivarlos.",
+                    "actualizacion": "2026-05-01",
+                    "createdAt": "2026-05-01T15:13:11.732Z",
+                    "updatedAt": "2026-05-19T21:56:02.720Z",
+                    "publishedAt": "2026-05-19T21:56:02.768Z"
+                }
+            },
+            {
+                "id": 40,
+                "documentId": "tqg8noiuh4wtijc6v2g66r0w",
+                "orden": 4,
+                "contenido": [
+                    {
+                        "type": "heading",
+                        "level": 3,
+                        "children": [
+                            {
+                                "text": "4. Registrar un nuevo empleado",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "children": [
+                            {
+                                "text": "Para crear un empleado nuevo, se debe presionar el botón + Registrar Empleado.",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "children": [
+                            {
+                                "text": "El sistema abrirá una ventana donde se deben completar los datos del empleado.",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "children": [
+                            {
+                                "text": "Campos del formulario:",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "image",
+                        "image": {
+                            "ext": ".png",
+                            "url": "http://44.204.243.176:1337/uploads/registroempleados_7cdacc9469.png",
+                            "hash": "registroempleados_7cdacc9469",
+                            "mime": "image/png",
+                            "name": "registroempleados.png",
+                            "size": 6.77,
+                            "width": 712,
+                            "height": 469,
+                            "caption": null,
+                            "formats": {
+                                "small": {
+                                    "ext": ".png",
+                                    "url": "/uploads/small_registroempleados_7cdacc9469.png",
+                                    "hash": "small_registroempleados_7cdacc9469",
+                                    "mime": "image/png",
+                                    "name": "small_registroempleados.png",
+                                    "path": null,
+                                    "size": 20.36,
+                                    "width": 500,
+                                    "height": 329,
+                                    "sizeInBytes": 20365
+                                },
+                                "thumbnail": {
+                                    "ext": ".png",
+                                    "url": "/uploads/thumbnail_registroempleados_7cdacc9469.png",
+                                    "hash": "thumbnail_registroempleados_7cdacc9469",
+                                    "mime": "image/png",
+                                    "name": "thumbnail_registroempleados.png",
+                                    "path": null,
+                                    "size": 7.32,
+                                    "width": 237,
+                                    "height": 156,
+                                    "sizeInBytes": 7316
+                                }
+                            },
+                            "provider": "local",
+                            "createdAt": "2026-05-01T16:22:12.530Z",
+                            "updatedAt": "2026-05-01T16:22:12.530Z",
+                            "previewUrl": null,
+                            "alternativeText": "registroempleados.png",
+                            "provider_metadata": null
+                        },
+                        "children": [
+                            {
+                                "text": "",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "children": [
+                            {
+                                "text": "Pasos para registrar:",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "list",
+                        "format": "ordered",
+                        "children": [
+                            {
+                                "type": "list-item",
+                                "children": [
+                                    {
+                                        "text": "Presionar + Registrar Empleado.",
+                                        "type": "text"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "list-item",
+                                "children": [
+                                    {
+                                        "text": "Completar los datos solicitados.",
+                                        "type": "text"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "list-item",
+                                "children": [
+                                    {
+                                        "text": "Verificar si el empleado debe quedar activo.",
+                                        "type": "text"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "list-item",
+                                "children": [
+                                    {
+                                        "text": "Presionar Enviar.",
+                                        "type": "text"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "list-item",
+                                "children": [
+                                    {
+                                        "text": "El sistema guardará el empleado en la base de datos.",
+                                        "type": "text"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "children": [
+                            {
+                                "text": "El botón Cancelar permite cerrar el formulario sin guardar cambios.",
+                                "type": "text"
+                            }
+                        ]
+                    }
+                ],
+                "Titulo": "Capacitación Modulo Empleados - 4. Registrar un nuevo empleado",
+                "minutos": 2,
+                "actividad": "Lectura",
+                "createdAt": "2026-05-01T19:30:45.849Z",
+                "updatedAt": "2026-05-01T19:30:45.849Z",
+                "publishedAt": "2026-05-01T19:30:45.863Z",
+                "capacitacion": {
+                    "id": 10,
+                    "documentId": "ivhjsc8yfjwk2e0mbzp6vc1t",
+                    "nombre": "Capacitación Módulo Empleados - SignusID",
+                    "descripcion": "En esta sección se va a aprender sobre cómo crear empleados, editarlos, y activarlos o inactivarlos.",
+                    "actualizacion": "2026-05-01",
+                    "createdAt": "2026-05-01T15:13:11.732Z",
+                    "updatedAt": "2026-05-19T21:56:02.720Z",
+                    "publishedAt": "2026-05-19T21:56:02.768Z"
+                }
+            },
+            {
+                "id": 42,
+                "documentId": "shn789p4b60mtv0sp0yqnld8",
+                "orden": 5,
+                "contenido": [
+                    {
+                        "type": "heading",
+                        "level": 3,
+                        "children": [
+                            {
+                                "text": "5. Editar un empleado existente",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "image",
+                        "image": {
+                            "ext": ".jpeg",
+                            "url": "http://44.204.243.176:1337/uploads/flechaeditarempresa_0d36ea228c.jpeg",
+                            "hash": "flechaeditarempresa_0d36ea228c",
+                            "mime": "image/jpeg",
+                            "name": "flechaeditarempresa.jpeg",
+                            "size": 44.98,
+                            "width": 1305,
+                            "height": 370,
+                            "caption": null,
+                            "formats": {
+                                "large": {
+                                    "ext": ".jpeg",
+                                    "url": "/uploads/large_flechaeditarempresa_0d36ea228c.jpeg",
+                                    "hash": "large_flechaeditarempresa_0d36ea228c",
+                                    "mime": "image/jpeg",
+                                    "name": "large_flechaeditarempresa.jpeg",
+                                    "path": null,
+                                    "size": 29.03,
+                                    "width": 1000,
+                                    "height": 284,
+                                    "sizeInBytes": 29026
+                                },
+                                "small": {
+                                    "ext": ".jpeg",
+                                    "url": "/uploads/small_flechaeditarempresa_0d36ea228c.jpeg",
+                                    "hash": "small_flechaeditarempresa_0d36ea228c",
+                                    "mime": "image/jpeg",
+                                    "name": "small_flechaeditarempresa.jpeg",
+                                    "path": null,
+                                    "size": 9.96,
+                                    "width": 500,
+                                    "height": 142,
+                                    "sizeInBytes": 9955
+                                },
+                                "medium": {
+                                    "ext": ".jpeg",
+                                    "url": "/uploads/medium_flechaeditarempresa_0d36ea228c.jpeg",
+                                    "hash": "medium_flechaeditarempresa_0d36ea228c",
+                                    "mime": "image/jpeg",
+                                    "name": "medium_flechaeditarempresa.jpeg",
+                                    "path": null,
+                                    "size": 19.49,
+                                    "width": 750,
+                                    "height": 213,
+                                    "sizeInBytes": 19494
+                                },
+                                "thumbnail": {
+                                    "ext": ".jpeg",
+                                    "url": "/uploads/thumbnail_flechaeditarempresa_0d36ea228c.jpeg",
+                                    "hash": "thumbnail_flechaeditarempresa_0d36ea228c",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_flechaeditarempresa.jpeg",
+                                    "path": null,
+                                    "size": 3.19,
+                                    "width": 245,
+                                    "height": 69,
+                                    "sizeInBytes": 3193
+                                }
+                            },
+                            "provider": "local",
+                            "createdAt": "2026-05-01T19:18:27.487Z",
+                            "updatedAt": "2026-05-01T19:18:27.487Z",
+                            "previewUrl": null,
+                            "alternativeText": "flechaeditarempresa.jpeg",
+                            "provider_metadata": null
+                        },
+                        "children": [
+                            {
+                                "text": "",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "children": [
+                            {
+                                "text": "Al presionar el botón de edición, se abre el formulario Editar Empleado con la información actual del empleado seleccionado.",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "image",
+                        "image": {
+                            "ext": ".png",
+                            "url": "http://44.204.243.176:1337/uploads/editarempleados_e8faf72e4e.png",
+                            "hash": "editarempleados_e8faf72e4e",
+                            "mime": "image/png",
+                            "name": "editarempleados.png",
+                            "size": 8.48,
+                            "width": 706,
+                            "height": 471,
+                            "caption": null,
+                            "formats": {
+                                "small": {
+                                    "ext": ".png",
+                                    "url": "/uploads/small_editarempleados_e8faf72e4e.png",
+                                    "hash": "small_editarempleados_e8faf72e4e",
+                                    "mime": "image/png",
+                                    "name": "small_editarempleados.png",
+                                    "path": null,
+                                    "size": 26.9,
+                                    "width": 500,
+                                    "height": 334,
+                                    "sizeInBytes": 26904
+                                },
+                                "thumbnail": {
+                                    "ext": ".png",
+                                    "url": "/uploads/thumbnail_editarempleados_e8faf72e4e.png",
+                                    "hash": "thumbnail_editarempleados_e8faf72e4e",
+                                    "mime": "image/png",
+                                    "name": "thumbnail_editarempleados.png",
+                                    "path": null,
+                                    "size": 9.13,
+                                    "width": 234,
+                                    "height": 156,
+                                    "sizeInBytes": 9128
+                                }
+                            },
+                            "provider": "local",
+                            "createdAt": "2026-05-01T16:26:40.383Z",
+                            "updatedAt": "2026-05-01T16:26:40.383Z",
+                            "previewUrl": null,
+                            "alternativeText": "editarempleados.png",
+                            "provider_metadata": null
+                        },
+                        "children": [
+                            {
+                                "text": "",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "children": [
+                            {
+                                "text": "Pasos para editar:",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "list",
+                        "format": "ordered",
+                        "children": [
+                            {
+                                "type": "list-item",
+                                "children": [
+                                    {
+                                        "text": "Buscar el empleado en la tabla.",
+                                        "type": "text"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "list-item",
+                                "children": [
+                                    {
+                                        "text": "Presionar el botón de editar.",
+                                        "type": "text"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "list-item",
+                                "children": [
+                                    {
+                                        "text": "Modificar los campos necesarios.",
+                                        "type": "text"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "list-item",
+                                "children": [
+                                    {
+                                        "text": "Presionar Enviar para guardar los cambios.",
+                                        "type": "text"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "list-item",
+                                "children": [
+                                    {
+                                        "text": "El sistema actualizará la información del empleado.",
+                                        "type": "text"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "children": [
+                            {
+                                "text": "En este formulario también se puede modificar el estado del empleado usando el botón Activar Empleado.",
+                                "type": "text"
+                            }
+                        ]
+                    }
+                ],
+                "Titulo": "Capacitación Modulo Empleados - 5. Editar un empleado existente",
+                "minutos": 2,
+                "actividad": null,
+                "createdAt": "2026-05-01T19:31:35.332Z",
+                "updatedAt": "2026-05-01T19:31:35.332Z",
+                "publishedAt": "2026-05-01T19:31:35.353Z",
+                "capacitacion": {
+                    "id": 10,
+                    "documentId": "ivhjsc8yfjwk2e0mbzp6vc1t",
+                    "nombre": "Capacitación Módulo Empleados - SignusID",
+                    "descripcion": "En esta sección se va a aprender sobre cómo crear empleados, editarlos, y activarlos o inactivarlos.",
+                    "actualizacion": "2026-05-01",
+                    "createdAt": "2026-05-01T15:13:11.732Z",
+                    "updatedAt": "2026-05-19T21:56:02.720Z",
+                    "publishedAt": "2026-05-19T21:56:02.768Z"
+                }
+            },
+            {
+                "id": 44,
+                "documentId": "yccnl10v5osn7c1ad4edy2wg",
+                "orden": 6,
+                "contenido": [
+                    {
+                        "type": "heading",
+                        "level": 3,
+                        "children": [
+                            {
+                                "text": "6. Activar o desactivar un empleado",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "children": [
+                            {
+                                "text": "Además del formulario de edición, el módulo cuenta con una acción rápida para activar o desactivar empleados.",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "image",
+                        "image": {
+                            "ext": ".jpeg",
+                            "url": "http://44.204.243.176:1337/uploads/felchaactivardesactivarempleado_f7009aeb53.jpeg",
+                            "hash": "felchaactivardesactivarempleado_f7009aeb53",
+                            "mime": "image/jpeg",
+                            "name": "felchaactivardesactivarempleado.jpeg",
+                            "size": 48.78,
+                            "width": 1392,
+                            "height": 460,
+                            "caption": null,
+                            "formats": {
+                                "large": {
+                                    "ext": ".jpeg",
+                                    "url": "/uploads/large_felchaactivardesactivarempleado_f7009aeb53.jpeg",
+                                    "hash": "large_felchaactivardesactivarempleado_f7009aeb53",
+                                    "mime": "image/jpeg",
+                                    "name": "large_felchaactivardesactivarempleado.jpeg",
+                                    "path": null,
+                                    "size": 31.98,
+                                    "width": 1000,
+                                    "height": 330,
+                                    "sizeInBytes": 31980
+                                },
+                                "small": {
+                                    "ext": ".jpeg",
+                                    "url": "/uploads/small_felchaactivardesactivarempleado_f7009aeb53.jpeg",
+                                    "hash": "small_felchaactivardesactivarempleado_f7009aeb53",
+                                    "mime": "image/jpeg",
+                                    "name": "small_felchaactivardesactivarempleado.jpeg",
+                                    "path": null,
+                                    "size": 10.32,
+                                    "width": 500,
+                                    "height": 165,
+                                    "sizeInBytes": 10324
+                                },
+                                "medium": {
+                                    "ext": ".jpeg",
+                                    "url": "/uploads/medium_felchaactivardesactivarempleado_f7009aeb53.jpeg",
+                                    "hash": "medium_felchaactivardesactivarempleado_f7009aeb53",
+                                    "mime": "image/jpeg",
+                                    "name": "medium_felchaactivardesactivarempleado.jpeg",
+                                    "path": null,
+                                    "size": 19.75,
+                                    "width": 750,
+                                    "height": 248,
+                                    "sizeInBytes": 19751
+                                },
+                                "thumbnail": {
+                                    "ext": ".jpeg",
+                                    "url": "/uploads/thumbnail_felchaactivardesactivarempleado_f7009aeb53.jpeg",
+                                    "hash": "thumbnail_felchaactivardesactivarempleado_f7009aeb53",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_felchaactivardesactivarempleado.jpeg",
+                                    "path": null,
+                                    "size": 3.18,
+                                    "width": 245,
+                                    "height": 81,
+                                    "sizeInBytes": 3180
+                                }
+                            },
+                            "provider": "local",
+                            "createdAt": "2026-05-01T19:19:35.264Z",
+                            "updatedAt": "2026-05-01T19:19:35.264Z",
+                            "previewUrl": null,
+                            "alternativeText": "felchaactivardesactivarempleado.jpeg",
+                            "provider_metadata": null
+                        },
+                        "children": [
+                            {
+                                "text": "",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "children": [
+                            {
+                                "text": "Pasos:",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "list",
+                        "format": "ordered",
+                        "children": [
+                            {
+                                "type": "list-item",
+                                "children": [
+                                    {
+                                        "text": "Buscar el empleado en la tabla.",
+                                        "type": "text"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "list-item",
+                                "children": [
+                                    {
+                                        "text": "Presionar el botón de opciones en la columna Acciones.",
+                                        "type": "text"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "list-item",
+                                "children": [
+                                    {
+                                        "text": "Seleccionar Activar/Desactivar.",
+                                        "type": "text"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "list-item",
+                                "children": [
+                                    {
+                                        "text": "El sistema cambiará el estado del empleado.",
+                                        "type": "text"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "children": [
+                            {
+                                "text": "Cuando un empleado está activo, puede seguir siendo utilizado dentro del sistema. Cuando está inactivo, el registro se conserva, pero queda deshabilitado para ciertos procesos según la configuración de la aplicación.",
+                                "type": "text"
+                            }
+                        ]
+                    }
+                ],
+                "Titulo": "Capacitación Modulo Empleados - 6. Activar o desactivar un empleado",
+                "minutos": 2,
+                "actividad": "Lectura",
+                "createdAt": "2026-05-01T19:32:30.807Z",
+                "updatedAt": "2026-05-01T19:32:30.807Z",
+                "publishedAt": "2026-05-01T19:32:30.828Z",
+                "capacitacion": {
+                    "id": 10,
+                    "documentId": "ivhjsc8yfjwk2e0mbzp6vc1t",
+                    "nombre": "Capacitación Módulo Empleados - SignusID",
+                    "descripcion": "En esta sección se va a aprender sobre cómo crear empleados, editarlos, y activarlos o inactivarlos.",
+                    "actualizacion": "2026-05-01",
+                    "createdAt": "2026-05-01T15:13:11.732Z",
+                    "updatedAt": "2026-05-19T21:56:02.720Z",
+                    "publishedAt": "2026-05-19T21:56:02.768Z"
+                }
+            },
+            {
+                "id": 46,
+                "documentId": "ix3xeel7htntiq5xziqjnppb",
+                "orden": 7,
+                "contenido": [
+                    {
+                        "type": "heading",
+                        "level": 3,
+                        "children": [
+                            {
+                                "text": "7. Navegación entre páginas",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "children": [
+                            {
+                                "text": "Cuando existen muchos empleados registrados, la tabla se divide en páginas.",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "image",
+                        "image": {
+                            "ext": ".jpeg",
+                            "url": "http://44.204.243.176:1337/uploads/flechapaginacionempleados_f72380b37b.jpeg",
+                            "hash": "flechapaginacionempleados_f72380b37b",
+                            "mime": "image/jpeg",
+                            "name": "flechapaginacionempleados.jpeg",
+                            "size": 45.87,
+                            "width": 1241,
+                            "height": 410,
+                            "caption": null,
+                            "formats": {
+                                "large": {
+                                    "ext": ".jpeg",
+                                    "url": "/uploads/large_flechapaginacionempleados_f72380b37b.jpeg",
+                                    "hash": "large_flechapaginacionempleados_f72380b37b",
+                                    "mime": "image/jpeg",
+                                    "name": "large_flechapaginacionempleados.jpeg",
+                                    "path": null,
+                                    "size": 35.19,
+                                    "width": 1000,
+                                    "height": 330,
+                                    "sizeInBytes": 35192
+                                },
+                                "small": {
+                                    "ext": ".jpeg",
+                                    "url": "/uploads/small_flechapaginacionempleados_f72380b37b.jpeg",
+                                    "hash": "small_flechapaginacionempleados_f72380b37b",
+                                    "mime": "image/jpeg",
+                                    "name": "small_flechapaginacionempleados.jpeg",
+                                    "path": null,
+                                    "size": 11.38,
+                                    "width": 500,
+                                    "height": 165,
+                                    "sizeInBytes": 11375
+                                },
+                                "medium": {
+                                    "ext": ".jpeg",
+                                    "url": "/uploads/medium_flechapaginacionempleados_f72380b37b.jpeg",
+                                    "hash": "medium_flechapaginacionempleados_f72380b37b",
+                                    "mime": "image/jpeg",
+                                    "name": "medium_flechapaginacionempleados.jpeg",
+                                    "path": null,
+                                    "size": 22.47,
+                                    "width": 750,
+                                    "height": 248,
+                                    "sizeInBytes": 22465
+                                },
+                                "thumbnail": {
+                                    "ext": ".jpeg",
+                                    "url": "/uploads/thumbnail_flechapaginacionempleados_f72380b37b.jpeg",
+                                    "hash": "thumbnail_flechapaginacionempleados_f72380b37b",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_flechapaginacionempleados.jpeg",
+                                    "path": null,
+                                    "size": 3.39,
+                                    "width": 245,
+                                    "height": 81,
+                                    "sizeInBytes": 3389
+                                }
+                            },
+                            "provider": "local",
+                            "createdAt": "2026-05-01T19:21:35.852Z",
+                            "updatedAt": "2026-05-01T19:21:35.852Z",
+                            "previewUrl": null,
+                            "alternativeText": "flechapaginacionempleados.jpeg",
+                            "provider_metadata": null
+                        },
+                        "children": [
+                            {
+                                "text": "",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "children": [
+                            {
+                                "text": "En la parte inferior derecha se encuentran los controles de paginación:",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "list",
+                        "format": "unordered",
+                        "children": [
+                            {
+                                "type": "list-item",
+                                "children": [
+                                    {
+                                        "text": "Ir a la primera página.",
+                                        "type": "text"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "list-item",
+                                "children": [
+                                    {
+                                        "text": "Ir a la página anterior.",
+                                        "type": "text"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "list-item",
+                                "children": [
+                                    {
+                                        "text": "Seleccionar una página específica.",
+                                        "type": "text"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "list-item",
+                                "children": [
+                                    {
+                                        "text": "Ir a la página siguiente.",
+                                        "type": "text"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "list-item",
+                                "children": [
+                                    {
+                                        "text": "Ir a la última página.",
+                                        "type": "text"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "children": [
+                            {
+                                "text": "También se puede cambiar la cantidad de empleados visibles usando el selector Mostrar X empleados.",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "children": [
+                            {
+                                "text": "",
+                                "type": "text"
+                            }
+                        ]
+                    }
+                ],
+                "Titulo": "Capacitación Modulo Empleados - 7. Navegación entre páginas",
+                "minutos": 2,
+                "actividad": "Lectura",
+                "createdAt": "2026-05-01T19:33:28.305Z",
+                "updatedAt": "2026-05-01T19:33:28.305Z",
+                "publishedAt": "2026-05-01T19:33:28.325Z",
+                "capacitacion": {
+                    "id": 10,
+                    "documentId": "ivhjsc8yfjwk2e0mbzp6vc1t",
+                    "nombre": "Capacitación Módulo Empleados - SignusID",
+                    "descripcion": "En esta sección se va a aprender sobre cómo crear empleados, editarlos, y activarlos o inactivarlos.",
+                    "actualizacion": "2026-05-01",
+                    "createdAt": "2026-05-01T15:13:11.732Z",
+                    "updatedAt": "2026-05-19T21:56:02.720Z",
+                    "publishedAt": "2026-05-19T21:56:02.768Z"
+                }
+            },
+            {
+                "id": 48,
+                "documentId": "cekksz75pk5f8wgjunuavpjt",
+                "orden": 8,
+                "contenido": [
+                    {
+                        "type": "heading",
+                        "level": 3,
+                        "children": [
+                            {
+                                "text": "8. Recomendaciones de uso",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "children": [
+                            {
+                                "text": "Antes de registrar un empleado nuevo, se recomienda buscarlo primero para evitar duplicados.",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "children": [
+                            {
+                                "text": "También es importante revisar que la cédula, correo electrónico y nombre estén correctamente escritos antes de guardar el registro.",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "children": [
+                            {
+                                "text": "Si un empleado ya no debe utilizarse en el sistema, es recomendable desactivarlo en lugar de eliminarlo, ya que así se conserva el historial del registro.",
+                                "type": "text"
+                            }
+                        ]
+                    }
+                ],
+                "Titulo": "Capacitación Modulo Empleados - 8. Recomendaciones de uso",
+                "minutos": 1,
+                "actividad": "Lectura",
+                "createdAt": "2026-05-01T19:34:19.343Z",
+                "updatedAt": "2026-05-01T19:34:19.343Z",
+                "publishedAt": "2026-05-01T19:34:19.360Z",
+                "capacitacion": {
+                    "id": 10,
+                    "documentId": "ivhjsc8yfjwk2e0mbzp6vc1t",
+                    "nombre": "Capacitación Módulo Empleados - SignusID",
+                    "descripcion": "En esta sección se va a aprender sobre cómo crear empleados, editarlos, y activarlos o inactivarlos.",
+                    "actualizacion": "2026-05-01",
+                    "createdAt": "2026-05-01T15:13:11.732Z",
+                    "updatedAt": "2026-05-19T21:56:02.720Z",
+                    "publishedAt": "2026-05-19T21:56:02.768Z"
+                }
+            },
+            {
+                "id": 50,
+                "documentId": "d80nnsqjldas8d4okasz5ug1",
+                "orden": 9,
+                "contenido": [
+                    {
+                        "type": "heading",
+                        "level": 3,
+                        "children": [
+                            {
+                                "text": "9. Resumen del módulo",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "children": [
+                            {
+                                "text": "Al finalizar esta capacitación, el usuario debe ser capaz de:",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "list",
+                        "format": "unordered",
+                        "children": [
+                            {
+                                "type": "list-item",
+                                "children": [
+                                    {
+                                        "text": "Consultar empleados registrados.",
+                                        "type": "text"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "list-item",
+                                "children": [
+                                    {
+                                        "text": "Buscar empleados por nombre.",
+                                        "type": "text"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "list-item",
+                                "children": [
+                                    {
+                                        "text": "Filtrar empleados activos o inactivos.",
+                                        "type": "text"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "list-item",
+                                "children": [
+                                    {
+                                        "text": "Registrar nuevos empleados.",
+                                        "type": "text"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "list-item",
+                                "children": [
+                                    {
+                                        "text": "Editar información de empleados existentes.",
+                                        "type": "text"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "list-item",
+                                "children": [
+                                    {
+                                        "text": "Activar o desactivar empleados.",
+                                        "type": "text"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "list-item",
+                                "children": [
+                                    {
+                                        "text": "Navegar entre las páginas de la tabla.",
+                                        "type": "text"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "Titulo": "Capacitación Modulo Empleados - 9. Resumen del módulo",
+                "minutos": 1,
+                "actividad": "Lectura",
+                "createdAt": "2026-05-01T19:35:00.922Z",
+                "updatedAt": "2026-05-01T19:35:00.922Z",
+                "publishedAt": "2026-05-01T19:35:00.940Z",
+                "capacitacion": {
+                    "id": 10,
+                    "documentId": "ivhjsc8yfjwk2e0mbzp6vc1t",
+                    "nombre": "Capacitación Módulo Empleados - SignusID",
+                    "descripcion": "En esta sección se va a aprender sobre cómo crear empleados, editarlos, y activarlos o inactivarlos.",
+                    "actualizacion": "2026-05-01",
+                    "createdAt": "2026-05-01T15:13:11.732Z",
+                    "updatedAt": "2026-05-19T21:56:02.720Z",
+                    "publishedAt": "2026-05-19T21:56:02.768Z"
+                }
+            }
+        ],
+        "empresas": [
+            {
+                "id": 4,
+                "documentId": "mnsg9a5mgvqylz25p8zzsl1c",
+                "nombre": "Empresa 1",
+                "descripcion": "Empresa 1",
+                "createdAt": "2026-04-30T13:43:52.840Z",
+                "updatedAt": "2026-04-30T13:43:52.840Z",
+                "publishedAt": "2026-04-30T13:43:52.873Z",
+                "logo": null,
+                "users": [],
+                "capacitacions": [
+                    {
+                        "id": 8,
+                        "documentId": "bytm33lnh8ssr3se541tptwr",
+                        "nombre": "Capactiación Módulo Roles - SignusID",
+                        "descripcion": "En esta sección se va a aprender a crear roles, editarlos, asignarles permisos y activarlos o desactivarlos.",
+                        "actualizacion": "2026-05-01",
+                        "createdAt": "2026-05-01T17:12:13.681Z",
+                        "updatedAt": "2026-05-01T17:12:13.681Z",
+                        "publishedAt": "2026-05-01T17:12:13.703Z"
+                    },
+                    {
+                        "id": 10,
+                        "documentId": "ivhjsc8yfjwk2e0mbzp6vc1t",
+                        "nombre": "Capacitación Módulo Empleados - SignusID",
+                        "descripcion": "En esta sección se va a aprender sobre cómo crear empleados, editarlos, y activarlos o inactivarlos.",
+                        "actualizacion": "2026-05-01",
+                        "createdAt": "2026-05-01T15:13:11.732Z",
+                        "updatedAt": "2026-05-19T21:56:02.720Z",
+                        "publishedAt": "2026-05-19T21:56:02.768Z"
+                    }
+                ]
+            },
+            {
+                "id": 6,
+                "documentId": "qx53690xp12pbfbdq382dtvu",
+                "nombre": "Signusid",
+                "descripcion": "Activos",
+                "createdAt": "2026-05-08T17:32:45.529Z",
+                "updatedAt": "2026-05-08T17:32:45.529Z",
+                "publishedAt": "2026-05-08T17:32:45.555Z",
+                "logo": null,
+                "users": [
+                    {
+                        "id": 1,
+                        "documentId": "vk9o2g588cd24mtaebq54h9a",
+                        "username": "admin",
+                        "email": "admin@example.com",
+                        "provider": "local",
+                        "confirmed": true,
+                        "blocked": false,
+                        "createdAt": "2026-04-29T22:10:49.921Z",
+                        "updatedAt": "2026-04-29T22:10:49.921Z",
+                        "publishedAt": "2026-04-29T22:10:49.788Z"
+                    },
+                    {
+                        "id": 4,
+                        "documentId": "a37zwl7hgjqfb2o4ynmdsdho",
+                        "username": "whormaza",
+                        "email": "whormaza@grupodiverscan.com",
+                        "provider": "local",
+                        "confirmed": true,
+                        "blocked": false,
+                        "createdAt": "2026-05-08T17:36:49.005Z",
+                        "updatedAt": "2026-05-19T21:10:55.323Z",
+                        "publishedAt": "2026-05-08T17:48:05.013Z"
+                    },
+                    {
+                        "id": 2,
+                        "documentId": "b1iog2wj2jrrle089f9i7a4c",
+                        "username": "user1",
+                        "email": "user1@example.com",
+                        "provider": "local",
+                        "confirmed": true,
+                        "blocked": false,
+                        "createdAt": "2026-04-29T22:25:16.784Z",
+                        "updatedAt": "2026-05-19T21:52:59.925Z",
+                        "publishedAt": "2026-05-19T21:09:44.031Z"
+                    },
+                    {
+                        "id": 3,
+                        "documentId": "hz21hsfmbdtpoiwnpwe377ke",
+                        "username": "Alex",
+                        "email": "alex@gmail.com",
+                        "provider": "local",
+                        "confirmed": true,
+                        "blocked": false,
+                        "createdAt": "2026-05-01T15:22:27.398Z",
+                        "updatedAt": "2026-05-19T21:54:32.830Z",
+                        "publishedAt": "2026-05-01T15:22:27.398Z"
+                    }
+                ],
+                "capacitacions": [
+                    {
+                        "id": 10,
+                        "documentId": "ivhjsc8yfjwk2e0mbzp6vc1t",
+                        "nombre": "Capacitación Módulo Empleados - SignusID",
+                        "descripcion": "En esta sección se va a aprender sobre cómo crear empleados, editarlos, y activarlos o inactivarlos.",
+                        "actualizacion": "2026-05-01",
+                        "createdAt": "2026-05-01T15:13:11.732Z",
+                        "updatedAt": "2026-05-19T21:56:02.720Z",
+                        "publishedAt": "2026-05-19T21:56:02.768Z"
+                    },
+                    {
+                        "id": 8,
+                        "documentId": "bytm33lnh8ssr3se541tptwr",
+                        "nombre": "Capactiación Módulo Roles - SignusID",
+                        "descripcion": "En esta sección se va a aprender a crear roles, editarlos, asignarles permisos y activarlos o desactivarlos.",
+                        "actualizacion": "2026-05-01",
+                        "createdAt": "2026-05-01T17:12:13.681Z",
+                        "updatedAt": "2026-05-01T17:12:13.681Z",
+                        "publishedAt": "2026-05-01T17:12:13.703Z"
+                    }
+                ]
+            }
+        ],
+        "evaluacions": [
+            {
+                "id": 11,
+                "documentId": "gf9ooxbjycmolsxe0m27l7uc",
+                "createdAt": "2026-05-20T14:01:47.885Z",
+                "updatedAt": "2026-05-20T14:01:47.885Z",
+                "publishedAt": "2026-05-20T14:01:47.907Z",
+                "capacitacion": {
+                    "id": 10,
+                    "documentId": "ivhjsc8yfjwk2e0mbzp6vc1t",
+                    "nombre": "Capacitación Módulo Empleados - SignusID",
+                    "descripcion": "En esta sección se va a aprender sobre cómo crear empleados, editarlos, y activarlos o inactivarlos.",
+                    "actualizacion": "2026-05-01",
+                    "createdAt": "2026-05-01T15:13:11.732Z",
+                    "updatedAt": "2026-05-19T21:56:02.720Z",
+                    "publishedAt": "2026-05-19T21:56:02.768Z"
+                },
+                "respuestas": [
+                    {
+                        "id": 11,
+                        "respuesta": "Sirve para manejar Inventarios",
+                        "correcta": null
+                    },
+                    {
+                        "id": 12,
+                        "respuesta": "Sirve para Realizar pedidos",
+                        "correcta": null
+                    },
+                    {
+                        "id": 13,
+                        "respuesta": "Sirve para Manejar usuarios personal",
+                        "correcta": true
+                    }
+                ]
+            }
+        ],
+        "rols": [
+            {
+                "id": 14,
+                "documentId": "d23mgu1bfl8vejleqpawf65u",
+                "nombre": "partner",
+                "createdAt": "2026-05-19T20:34:38.931Z",
+                "updatedAt": "2026-05-19T20:34:38.931Z",
+                "publishedAt": "2026-05-19T20:34:38.944Z",
+                "capacitacion": {
+                    "id": 10,
+                    "documentId": "ivhjsc8yfjwk2e0mbzp6vc1t",
+                    "nombre": "Capacitación Módulo Empleados - SignusID",
+                    "descripcion": "En esta sección se va a aprender sobre cómo crear empleados, editarlos, y activarlos o inactivarlos.",
+                    "actualizacion": "2026-05-01",
+                    "createdAt": "2026-05-01T15:13:11.732Z",
+                    "updatedAt": "2026-05-19T21:56:02.720Z",
+                    "publishedAt": "2026-05-19T21:56:02.768Z"
+                }
+            }
+        ]
+    },
+    "meta": {}
+}

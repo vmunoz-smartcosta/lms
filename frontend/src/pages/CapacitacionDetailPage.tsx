@@ -27,9 +27,15 @@ interface Contenido {
 
 interface Evaluacion {
   id: number;
-  documentId: string;
-  pregunta: string;
-  respuesta: boolean;
+  documentId?: string;
+  pregunta?: string;
+  respuestas: EvaluacionRespuesta[];
+}
+
+interface EvaluacionRespuesta {
+  id: number;
+  respuesta: string;
+  correcta: boolean | null;
 }
 
 interface CapacitacionDetail {
@@ -54,12 +60,29 @@ export const CapacitacionDetailPage = () => {
   const [activeChapter, setActiveChapter] = useState<Contenido | null>(null);
   const [showEvaluation, setShowEvaluation] = useState(false);
   const [selectedEvaluations, setSelectedEvaluations] = useState<Evaluacion[]>([]);
-  const [evaluationAnswers, setEvaluationAnswers] = useState<Record<number, boolean>>({});
+  const [evaluationAnswers, setEvaluationAnswers] = useState<Record<number, number>>({});
   const [evaluationFinished, setEvaluationFinished] = useState(false);
   const [approved, setApproved] = useState<boolean | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [attempts, setAttempts] = useState(0);
   const [hasApprovedBefore, setHasApprovedBefore] = useState(false);
+
+  const normalizeEvaluations = (evaluacions: unknown): Evaluacion[] => {
+    if (!Array.isArray(evaluacions)) return [];
+
+    return evaluacions
+      .map((item: any) => ({
+        id: item.id,
+        documentId: item.documentId,
+        pregunta: item.pregunta,
+        respuestas: Array.isArray(item.respuestas) ? item.respuestas : [],
+      }))
+      .filter((item: Evaluacion) =>
+        item.id &&
+        item.respuestas.length > 0 &&
+        item.respuestas.some((respuesta) => respuesta.correcta === true)
+      );
+  };
 
   useEffect(() => {
     const fetchDetail = async () => {
@@ -69,12 +92,15 @@ export const CapacitacionDetailPage = () => {
         if (sortedData.contenidos) {
           sortedData.contenidos.sort((a: Contenido, b: Contenido) => a.orden - b.orden);
         }
+        const normalizedEvaluations = normalizeEvaluations(sortedData.evaluacions);
+        sortedData.evaluacions = normalizedEvaluations;
         setData(sortedData);
 
         // Prepare evaluations (random 10 if > 10)
-        if (sortedData.evaluacions && sortedData.evaluacions.length > 0) {
-          const shuffled = [...sortedData.evaluacions].sort(() => 0.5 - Math.random());
+        if (normalizedEvaluations.length > 0) {
+          const shuffled = [...normalizedEvaluations].sort(() => 0.5 - Math.random());
           setSelectedEvaluations(shuffled.slice(0, 10));
+          setEvaluationAnswers({});
         }
 
         if (sortedData.contenidos?.length > 0) {
@@ -146,7 +172,8 @@ export const CapacitacionDetailPage = () => {
 
     let correctCount = 0;
     selectedEvaluations.forEach(q => {
-      if (evaluationAnswers[q.id] === q.respuesta) {
+      const correctAnswer = q.respuestas.find((answer) => answer.correcta === true);
+      if (correctAnswer && evaluationAnswers[q.id] === correctAnswer.id) {
         correctCount++;
       }
     });
@@ -598,26 +625,30 @@ export const CapacitacionDetailPage = () => {
                       {selectedEvaluations.map((evalItem, index) => (
                         <div key={evalItem.id} className="bg-light/30 p-8 rounded-[32px] border border-blue-gray/10">
                           <p className="text-xs font-black text-primary uppercase tracking-widest mb-3">Pregunta {index + 1}</p>
-                          <h4 className="text-xl font-bold text-dark mb-6 leading-tight">{evalItem.pregunta}</h4>
-                          <div className="flex gap-4">
-                            <button
-                              onClick={() => setEvaluationAnswers(prev => ({ ...prev, [evalItem.id]: true }))}
-                              className={`flex-1 flex items-center justify-center gap-3 p-4 rounded-2xl font-black text-xs uppercase tracking-widest transition-all ${evaluationAnswers[evalItem.id] === true
-                                ? 'bg-green-500 text-white shadow-lg shadow-green-500/20'
-                                : 'bg-white border-2 border-blue-gray/20 text-gray-dark hover:border-green-500/50'
+                          <h4 className="text-xl font-bold text-dark mb-6 leading-tight">
+                            {evalItem.pregunta || 'Selecciona la respuesta correcta'}
+                          </h4>
+                          <div className="grid gap-4">
+                            {evalItem.respuestas.map((respuesta) => (
+                              <button
+                                key={respuesta.id}
+                                onClick={() => setEvaluationAnswers(prev => ({ ...prev, [evalItem.id]: respuesta.id }))}
+                                className={`w-full flex items-center justify-between gap-3 p-4 rounded-2xl font-black text-xs uppercase tracking-widest transition-all ${
+                                  evaluationAnswers[evalItem.id] === respuesta.id
+                                    ? 'bg-primary text-white shadow-lg shadow-primary/20'
+                                    : 'bg-white border-2 border-blue-gray/20 text-gray-dark hover:border-primary/50'
                                 }`}
-                            >
-                              Verdadero <CheckCircle2 size={18} />
-                            </button>
-                            <button
-                              onClick={() => setEvaluationAnswers(prev => ({ ...prev, [evalItem.id]: false }))}
-                              className={`flex-1 flex items-center justify-center gap-3 p-4 rounded-2xl font-black text-xs uppercase tracking-widest transition-all ${evaluationAnswers[evalItem.id] === false
-                                ? 'bg-red-500 text-white shadow-lg shadow-red-500/20'
-                                : 'bg-white border-2 border-blue-gray/20 text-gray-dark hover:border-red-500/50'
-                                }`}
-                            >
-                              Falso <XCircle size={18} />
-                            </button>
+                              >
+                                <span className="text-left normal-case tracking-normal text-sm font-bold">
+                                  {respuesta.respuesta}
+                                </span>
+                                {evaluationAnswers[evalItem.id] === respuesta.id ? (
+                                  <CheckCircle2 size={18} className="shrink-0" />
+                                ) : (
+                                  <ChevronRight size={18} className="shrink-0" />
+                                )}
+                              </button>
+                            ))}
                           </div>
                         </div>
                       ))}
