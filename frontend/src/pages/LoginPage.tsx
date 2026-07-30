@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
 import { LogIn, Loader2 } from 'lucide-react';
@@ -10,6 +10,12 @@ export const LoginPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
+
+  // Un token viejo en localStorage deja la sesion en un estado inconsistente si el
+  // login falla, asi que se descarta al entrar al formulario.
+  useEffect(() => {
+    localStorage.removeItem('jwt');
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

@@ -1,0 +1,5 @@
+# Claves SSH y certificados: nunca deben viajar en el repositorio.
+# La clave de acceso al EC2 vive en ~/.ssh/, no aqui.
+*.pem
+*.key
+*.ppk
