@@ -15,7 +15,7 @@ interface Capacitacion {
 export const CapacitacionesPage = () => {
   const [capacitaciones, setCapacitaciones] = useState<Capacitacion[]>([]);
   const [loading, setLoading] = useState(true);
-  const { user, loading: authLoading } = useAuth();
+  const { user, loading: authLoading, isAdmin, empresaScopeId } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,20 +23,21 @@ export const CapacitacionesPage = () => {
       try {
         setLoading(true);
         let url = '/capacitacions?populate=*';
-        
-        // Si el usuario pertenece a una empresa y NO es administrador, filtramos por empresa y rol
-        const isAdmin = user?.rol?.nombre?.toLowerCase() === 'administrador';
-        
-        if (user?.empresa?.documentId && !isAdmin) {
-          url += `&filters[empresas][documentId][$eq]=${user.empresa.documentId}`;
-          console.log('[Capacitaciones] Filtrando por empresa documentId:', user.empresa.documentId);
-          
-          if (user?.rol?.documentId) {
+
+        // La empresa asignada acota los resultados aunque el usuario sea administrador;
+        // solo el administrador sin empresa ve las de todas las empresas.
+        if (empresaScopeId) {
+          url += `&filters[empresas][documentId][$eq]=${empresaScopeId}`;
+          console.log('[Capacitaciones] Acotado a la empresa:', empresaScopeId);
+
+          // El filtro por rol solo aplica a los no administradores: un administrador
+          // acotado debe ver todas las capacitaciones de su empresa, no solo las suyas.
+          if (!isAdmin && user?.rol?.documentId) {
             url += `&filters[rols][documentId][$eq]=${user.rol.documentId}`;
             console.log('[Capacitaciones] Filtrando por rol documentId:', user.rol.documentId);
           }
-        } else if (isAdmin) {
-          console.log('[Capacitaciones] Administrador detectado: Ver todas');
+        } else {
+          console.log('[Capacitaciones] Alcance global: ver todas');
         }
 
         console.log('[Capacitaciones] Fetching URL:', url);
@@ -57,7 +58,7 @@ export const CapacitacionesPage = () => {
     if (!authLoading) {
       fetchCapacitaciones();
     }
-  }, [user, authLoading]);
+  }, [user, authLoading, isAdmin, empresaScopeId]);
 
   if (loading || authLoading) {
     return (

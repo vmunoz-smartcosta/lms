@@ -17,11 +17,21 @@ interface AuthContextType {
   user: User | null;
   loading: boolean;
   status: 'authenticated' | 'unauthenticated' | 'pending_approval' | 'admin';
+  isAdmin: boolean;
+  /** documentId de la empresa que acota los datos, o null si el alcance es global. */
+  empresaScopeId: string | null;
+  /** true solo para un administrador sin empresa asignada: ve todas las empresas. */
+  hasGlobalScope: boolean;
   signUp: (data: any) => Promise<void>;
-  login: (identifier: string, password: string) => Promise<void>;
+  login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
   refreshUser: (isInitial?: boolean) => Promise<void>;
 }
+
+export const ROL_ADMINISTRADOR = 'administrador';
+
+export const esAdministrador = (nombreRol?: string | null) =>
+  nombreRol?.toLowerCase() === ROL_ADMINISTRADOR;
 
 // --- Context & Hook ---
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -98,36 +108,47 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, [refreshUser]);
 
   // 5. Login
-  const login = useCallback(async (identifier: string, password: string) => {
-    const { data } = await api.post('/auth/local', { identifier, password });
+  // Strapi espera el campo "identifier", que acepta email o username; aqui siempre
+  // se manda el correo.
+  const login = useCallback(async (email: string, password: string) => {
+    const { data } = await api.post('/auth/local', { identifier: email, password });
     localStorage.setItem('jwt', data.jwt);
     setUser(data.user);
     await refreshUser();
   }, [refreshUser]);
 
   // 6. RBAC Logic
+  const isAdmin = useMemo(() => esAdministrador(user?.rol?.nombre), [user]);
+
+  // La empresa asignada acota los datos que se ven, y lo hace tambien para un
+  // administrador. Solo un administrador SIN empresa tiene alcance global.
+  const empresaScopeId = useMemo(() => user?.empresa?.documentId ?? null, [user]);
+  const hasGlobalScope = isAdmin && !empresaScopeId;
+
   const status = useMemo((): AuthContextType['status'] => {
     if (!user) return 'unauthenticated';
 
-    const isAdmin = user.rol?.nombre.toLowerCase() === 'administrador';
     const isApproved = user.solicitud?.aprobado === true;
     const hasCompany = !!user.empresa;
 
     if (isAdmin) return 'admin';
     if (hasCompany && isApproved) return 'authenticated';
-    
+
     return 'pending_approval';
-  }, [user]);
+  }, [user, isAdmin]);
 
   const value = useMemo(() => ({
     user,
     loading,
     status,
+    isAdmin,
+    empresaScopeId,
+    hasGlobalScope,
     signUp,
     login,
     logout,
     refreshUser
-  }), [user, loading, status, signUp, login, logout, refreshUser]);
+  }), [user, loading, status, isAdmin, empresaScopeId, hasGlobalScope, signUp, login, logout, refreshUser]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

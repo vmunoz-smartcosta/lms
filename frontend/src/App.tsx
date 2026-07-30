@@ -6,6 +6,7 @@ import { PendingApprovalPage } from './pages/PendingApprovalPage';
 import { CapacitacionesPage } from './pages/CapacitacionesPage';
 import { CapacitacionDetailPage } from './pages/CapacitacionDetailPage';
 import { UsersPage } from './pages/UsersPage';
+import { EmpresasPage } from './pages/EmpresasPage';
 import { Users, Building2, GraduationCap, LogOut, ChevronRight, Bell, Search, LayoutDashboard } from 'lucide-react';
 
 // Protected Route Component
@@ -185,10 +186,7 @@ const App = () => {
           <Route path="/empresas" element={
             <ProtectedRoute allowedStatus={['admin']}>
               <DashboardLayout title="Gestión de Empresas">
-                <div className="bg-white p-8 rounded-[40px] border border-blue-gray/20 shadow-xl">
-                  <h3 className="text-2xl font-black text-dark mb-4">Gestión de Empresas</h3>
-                  <p className="text-gray-dark">Esta sección está en desarrollo.</p>
-                </div>
+                <EmpresasPage />
               </DashboardLayout>
             </ProtectedRoute>
           } />

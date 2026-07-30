@@ -4,7 +4,7 @@ import { useAuth } from '../AuthContext';
 import { LogIn, Loader2 } from 'lucide-react';
 
 export const LoginPage = () => {
-  const [identifier, setIdentifier] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -22,7 +22,7 @@ export const LoginPage = () => {
     setIsSubmitting(true);
     setError('');
     try {
-      await login(identifier, password);
+      await login(email, password);
       navigate('/');
     } catch (err: any) {
       setError(err.response?.data?.error?.message || 'Invalid credentials');
@@ -50,11 +50,12 @@ export const LoginPage = () => {
           )}
           
           <div>
-            <label className="block text-sm font-semibold text-dark mb-2">Usuario o Email</label>
+            <label className="block text-sm font-semibold text-dark mb-2">Correo electrónico</label>
             <input
-              type="text"
-              value={identifier}
-              onChange={(e) => setIdentifier(e.target.value)}
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              autoComplete="email"
               className="w-full bg-light/50 border border-blue-gray rounded-xl py-3 px-4 text-dark focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
               placeholder="admin@example.com"
               required
@@ -67,6 +68,7 @@ export const LoginPage = () => {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              autoComplete="current-password"
               className="w-full bg-light/50 border border-blue-gray rounded-xl py-3 px-4 text-dark focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
               placeholder="••••••••"
               required

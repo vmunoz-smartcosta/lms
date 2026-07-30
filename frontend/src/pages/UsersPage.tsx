@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import api from '../services/api';
+import { useAuth, esAdministrador } from '../AuthContext';
 import { 
   Users, 
   Mail, 
@@ -16,7 +17,8 @@ import {
   UserCheck,
   AlertCircle,
   Trophy,
-  ClipboardList
+  ClipboardList,
+  Lock
 } from 'lucide-react';
 
 interface Role {
@@ -77,6 +79,7 @@ const getRoleBadgeStyles = (roleName?: string | null) => {
 };
 
 export const UsersPage = () => {
+  const { empresaScopeId, hasGlobalScope } = useAuth();
   const [users, setUsers] = useState<User[]>([]);
   const [roles, setRoles] = useState<Role[]>([]);
   const [companies, setCompanies] = useState<Company[]>([]);
@@ -98,14 +101,34 @@ export const UsersPage = () => {
   const fetchData = async () => {
     try {
       setLoading(true);
+
+      // Con una empresa asignada solo se gestionan los usuarios de esa empresa.
+      let usersUrl = '/users?populate[rol][populate]=*&populate[empresa][populate]=*&populate[solicitud][populate]=*&populate[certificados][populate][capacitacion][populate]=*';
+      if (empresaScopeId) {
+        usersUrl += `&filters[empresa][documentId][$eq]=${empresaScopeId}`;
+      }
+
       const [usersRes, rolesRes, companiesRes] = await Promise.all([
-        api.get('/users?populate[rol][populate]=*&populate[empresa][populate]=*&populate[solicitud][populate]=*&populate[certificados][populate][capacitacion][populate]=*'),
+        api.get(usersUrl),
         api.get('/rols'),
         api.get('/empresas')
       ]);
-      setUsers(usersRes.data);
-      setRoles(rolesRes.data.data || []);
-      setCompanies(companiesRes.data.data || []);
+
+      // Red de seguridad: si el filtro del servidor no se aplicase, no se muestran
+      // igualmente usuarios de otras empresas.
+      const recibidos: User[] = usersRes.data || [];
+      setUsers(empresaScopeId
+        ? recibidos.filter(u => u.empresa?.documentId === empresaScopeId)
+        : recibidos);
+
+      const todasLasEmpresas: Company[] = companiesRes.data.data || [];
+      setCompanies(empresaScopeId
+        ? todasLasEmpresas.filter(c => c.documentId === empresaScopeId)
+        : todasLasEmpresas);
+
+      // El rol administrador no se asigna desde aqui: solo desde el panel de Strapi.
+      const todosLosRoles: Role[] = rolesRes.data.data || [];
+      setRoles(todosLosRoles.filter(r => !esAdministrador(r.nombre)));
     } catch (error) {
       console.error('Error fetching data:', error);
     } finally {
@@ -115,9 +138,11 @@ export const UsersPage = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [empresaScopeId]);
 
+  // Los administradores solo se gestionan desde el panel de Strapi.
   const openEditModal = (user: User) => {
+    if (esAdministrador(user.rol?.nombre)) return;
     setSelectedUser(user);
     setUpdateError(null);
     setFormData({
@@ -147,6 +172,16 @@ export const UsersPage = () => {
 
   const handleUpdateUser = async () => {
     if (!selectedUser) return;
+    if (esAdministrador(selectedUser.rol?.nombre)) return;
+
+    // El desplegable ya excluye el rol administrador; esto cubre el caso de que
+    // llegase igualmente por manipulacion del formulario.
+    const rolElegido = roles.find(r => r.id.toString() === formData.roleId);
+    if (rolElegido && esAdministrador(rolElegido.nombre)) {
+      setUpdateError('El rol administrador solo puede asignarse desde el panel de Strapi.');
+      return;
+    }
+
     setIsUpdating(true);
     setUpdateError(null);
     try {
@@ -185,7 +220,11 @@ export const UsersPage = () => {
             <Users className="text-primary" size={28} />
             Gestión de Usuarios
           </h2>
-          <p className="text-gray-dark text-sm mt-1">Administra los accesos y roles de la plataforma.</p>
+          <p className="text-gray-dark text-sm mt-1">
+            {hasGlobalScope
+              ? 'Administra los accesos y roles de todas las empresas.'
+              : `Usuarios de ${companies[0]?.nombre ?? 'tu empresa'}.`}
+          </p>
         </div>
 
         <div className="flex items-center gap-4">
@@ -282,12 +321,21 @@ export const UsersPage = () => {
                     )}
                   </td>
                   <td className="px-8 py-6 text-right">
-                    <button 
-                      onClick={() => openEditModal(user)}
-                      className="p-3 text-gray-dark hover:text-primary hover:bg-primary/5 rounded-2xl transition-all"
-                    >
-                      <MoreVertical size={20} />
-                    </button>
+                    {esAdministrador(user.rol?.nombre) ? (
+                      <span
+                        title="Los administradores solo se editan desde el panel de Strapi"
+                        className="inline-flex p-3 text-gray-dark/30 cursor-not-allowed"
+                      >
+                        <Lock size={20} />
+                      </span>
+                    ) : (
+                      <button
+                        onClick={() => openEditModal(user)}
+                        className="p-3 text-gray-dark hover:text-primary hover:bg-primary/5 rounded-2xl transition-all"
+                      >
+                        <MoreVertical size={20} />
+                      </button>
+                    )}
                   </td>
                 </tr>
               ))}
